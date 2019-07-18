@@ -1,0 +1,10 @@
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--released state. -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#f6f7f9"/>
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+
+</selector>
