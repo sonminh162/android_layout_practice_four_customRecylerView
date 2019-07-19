@@ -15,13 +15,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText edit_text;
     ImageButton book_mark;
 
     @Override
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         book_mark = findViewById(R.id.button1);
+        edit_text = findViewById(R.id.edit_text);
 
 //        book_mark.setBackgroundResource(R.drawable.ic_book_mark_off);
         initView();
@@ -87,7 +91,18 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
         arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
 
-        Adapter adapter = new Adapter(arrayList,getApplication());
+        Adapter adapter = new Adapter(arrayList, new Adapter.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(Info info) {
+                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onItemClick(Search search) {
+                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
 
     }
