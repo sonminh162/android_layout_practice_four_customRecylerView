@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter {
+public class Adapter extends RecyclerView.Adapter implements OnItemClickListener{
+
+
 
     private static final int HEADER = 1;
     private static final int CONTENT = 2;
@@ -54,9 +56,7 @@ public class Adapter extends RecyclerView.Adapter {
                 case HEADER:
                     break;
                 case CONTENT:
-                    ((ViewHolder)holder).img.setImageResource(infors.get(position).getImage());
-                    ((ViewHolder)holder).description.setText(infors.get(position).getDescription());
-                    ((ViewHolder)holder).time.setText(infors.get(position).getTime());
+                    ((ViewHolder)holder).bindView(infors.get(position));
                     break;
             }
         }
@@ -65,6 +65,12 @@ public class Adapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return infors.size();
+    }
+
+    // custom onClick
+    @Override
+    public void onItemClick(Info info) {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -77,6 +83,12 @@ public class Adapter extends RecyclerView.Adapter {
             img = itemView.findViewById(R.id.img);
             description = itemView.findViewById(R.id.description);
             time = itemView.findViewById(R.id.time);
+
+        }
+        public void bindView(Info info){
+            img.setImageResource(info.getImage());
+            description.setText(info.getDescription());
+            time.setText(info.getTime());
         }
     }
 
