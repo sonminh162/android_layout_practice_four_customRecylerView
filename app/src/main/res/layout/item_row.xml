@@ -65,6 +65,7 @@
             app:layout_constraintStart_toEndOf="@+id/button2" />
 
         <ImageButton
+            android:scaleType="fitXY"
             android:background="@drawable/ic_like_on"
             android:id="@+id/button2"
             android:layout_width="20dp"

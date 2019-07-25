@@ -86,18 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayList arrayList = new ArrayList<>();
         arrayList.add(new Search());
-        arrayList.add(new Info(R.drawable.cat1,"Snowbirds-Mature, Reliable guy can drive your car To or From...","2hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat2,"Yorkie Poodle Puppies","5hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat1,"Snowbirds-Mature, Reliable guy can drive your car To or From...","2hrs ago",true,true));
+        arrayList.add(new Info(R.drawable.cat2,"Yorkie Poodle Puppies","5hrs ago",true,true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false,true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false,true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false,false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false,false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true,true));
 
         Adapter adapter = new Adapter(arrayList, new Adapter.OnItemClickListener(){
 
@@ -113,6 +113,15 @@ public class MainActivity extends AppCompatActivity {
                     ((Info) arrayList.get(position)).setChecked(true);
                 }else {
                     ((Info) arrayList.get(position)).setChecked(false);
+                }
+            }
+
+            @Override
+            public void onItemClickLike(boolean state, int position) {
+                if(state){
+                    ((Info) arrayList.get(position)).setLiked(true);
+                }else {
+                    ((Info) arrayList.get(position)).setLiked(false);
                 }
             }
 

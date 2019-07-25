@@ -5,6 +5,15 @@ public class Info {
     private String description;
     private String time;
     private boolean isChecked;
+    private boolean liked;
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
 
     public boolean isChecked() {
         return isChecked;
@@ -38,10 +47,11 @@ public class Info {
         this.time = time;
     }
 
-    public Info(int image, String description, String time, boolean isChecked) {
+    public Info(int image, String description, String time, boolean isChecked, boolean liked) {
         this.image = image;
         this.description = description;
         this.time = time;
         this.isChecked = isChecked;
+        this.liked = liked;
     }
 }

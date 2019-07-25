@@ -23,6 +23,7 @@ public class Adapter extends RecyclerView.Adapter {
     public interface OnItemClickListener {
         void onItemClick(Info info);
         void onItemClick(boolean state,int position);
+        void onItemClickLike(boolean state,int position);
         void onItemClick(String text);
     }
 
@@ -113,10 +114,16 @@ public class Adapter extends RecyclerView.Adapter {
                     listener.onItemClick(info);
                 }
             });
-            if(!infors.get(position).isChecked())
+            if(!infors.get(position).isChecked()) {
                 book_mark.setImageResource(R.drawable.ic_book_mark_off);
-            else
+            } else {
                 book_mark.setImageResource(R.drawable.ic_book_mark_on);
+            }
+            if(!infors.get(position).isLiked()) {
+                like.setImageResource(R.drawable.ic_like_off);
+            } else {
+                like.setImageResource(R.drawable.ic_like_on);
+            }
             book_mark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -131,6 +138,16 @@ public class Adapter extends RecyclerView.Adapter {
                     }else{
                         listener.onItemClick(true,position);
                     }
+                    notifyDataSetChanged();
+                }
+            });
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(infors.get(position).isLiked())
+                        listener.onItemClickLike(false,position);
+                    else
+                        listener.onItemClickLike(true,position);
                     notifyDataSetChanged();
                 }
             });
