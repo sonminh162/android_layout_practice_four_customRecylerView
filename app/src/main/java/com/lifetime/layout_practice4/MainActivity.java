@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -24,11 +25,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    Context context;
     EditText edit_text;
     ImageButton book_mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         //make translucent statusBar on kitkat devices
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
@@ -81,29 +84,44 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList arrayList = new ArrayList<>();
+        final ArrayList arrayList = new ArrayList<>();
         arrayList.add(new Search());
-        arrayList.add(new Info(R.drawable.cat1,"Snowbirds-Mature, Reliable guy can drive your car To or From...","2hrs ago"));
-        arrayList.add(new Info(R.drawable.cat2,"Yorkie Poodle Puppies","5hrs ago"));
-        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago"));
-        arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
-        arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
-        arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
-        arrayList.add(new Info(R.drawable.cat4,"Sweethearts Child Care/Full time special for 2+yr. old…","18hrs ago"));
+        arrayList.add(new Info(R.drawable.cat1,"Snowbirds-Mature, Reliable guy can drive your car To or From...","2hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat2,"Yorkie Poodle Puppies","5hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",false));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
+        arrayList.add(new Info(R.drawable.cat3,"AKC Golden Retriever litter of 5 males and a female pups…","12hrs ago",true));
 
         Adapter adapter = new Adapter(arrayList, new Adapter.OnItemClickListener(){
 
             @Override
             public void onItemClick(Info info) {
+
                 Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onItemClick(Search search) {
-                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_LONG).show();
+            public void onItemClick(boolean state,int position) {
+                if(state){
+                    ((Info) arrayList.get(position)).setChecked(true);
+                }else {
+                    ((Info) arrayList.get(position)).setChecked(false);
+                }
             }
-        });
-        recyclerView.setAdapter(adapter);
 
+            @Override
+            public void onItemClick(String text) {
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
+            }
+        },this.context);
+        recyclerView.setAdapter(adapter);
     }
+
 }

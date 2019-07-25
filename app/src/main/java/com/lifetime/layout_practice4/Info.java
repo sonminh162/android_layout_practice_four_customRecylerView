@@ -4,6 +4,15 @@ public class Info {
     private int image;
     private String description;
     private String time;
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 
     public int getImage() {
         return image;
@@ -29,9 +38,10 @@ public class Info {
         this.time = time;
     }
 
-    public Info(int image, String description, String time) {
+    public Info(int image, String description, String time, boolean isChecked) {
         this.image = image;
         this.description = description;
         this.time = time;
+        this.isChecked = isChecked;
     }
 }
